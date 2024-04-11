@@ -19,7 +19,7 @@ export class UsersService {
     return this.axiosService.get(this.url);
   }
 
-  getUserById(): Observable<any> {
+  getUserById(id: number): Observable<any> {
     return this.axiosService.get(this.url);
   }
 

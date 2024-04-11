@@ -35,6 +35,17 @@ export class UsersComponent implements OnInit {
 
   users: any[] = [];
   selectedUser: any;
+  isEditMode = false;
+
+  openModal(user?: User): void {
+    this.selectedUser = user ? { ...user } : { name: '', email: '', password: '', role_id: 1 };
+    this.isEditMode = !!user;
+  }
+
+  clearSelection(): void {
+    this.selectedUser = null;
+    this.isEditMode = false;
+  }
 
   getformattedDate(date: Date) {
     var date = new Date();

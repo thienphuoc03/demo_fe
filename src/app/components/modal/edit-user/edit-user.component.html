@@ -8,8 +8,8 @@
     <!-- Modal content -->
     <form
       class="relative bg-white rounded-lg shadow dark:bg-gray-700"
-      [formGroup]="updateUserForm"
       (ngSubmit)="onSubmit()"
+      [formGroup]="userForm"
     >
       <!-- Modal header -->
       <div
@@ -20,6 +20,7 @@
         </h3>
         <button
           type="button"
+          (click)="onCloseModal()"
           class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
           data-modal-hide="editUserModal"
         >
@@ -57,9 +58,11 @@
               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="name"
               required
-              [value]=""
               formControlName="name"
             />
+            <div *ngIf="userForm?.get('name')?.invalid && userForm?.get('name')?.touched">
+              Name is required.
+            </div>
           </div>
           <div class="">
             <label
@@ -74,9 +77,11 @@
               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="example@company.com"
               required
-              [value]=""
               formControlName="email"
             />
+            <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+              Valid email is required.
+            </div>
           </div>
           <div class="">
             <label
@@ -91,9 +96,11 @@
               class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="****"
               required
-              [value]=""
               formControlName="password"
             />
+            <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+              Password is required.
+            </div>
           </div>
           <div class="">
             <label
